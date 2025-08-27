@@ -12,15 +12,15 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        body{
-            background-color: cadetblue;
-            min-height: 100vh;
-           
-            color: var(--dark);
-            display: flex;
-            
-           
-        }
+         body {
+      background: linear-gradient(135deg, #06beb6, #48b1bf);
+      min-height: 100vh;
+      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
         header{
             color: rgb(11, 128, 230);
             width: 100%;
@@ -28,37 +28,41 @@
         }
 
         nav {
+      width: 100%;
+      max-width: 1200px;
+      margin: 5px auto;
+      padding: 15px 30px;
+      background: var(--dark);
+      border-radius: 50px;
+      box-shadow: var(--shadow);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 100px;
-      box-shadow: var(--shadow);
-      background-color: rgb(6, 23, 24);
-      max-height: 100%;
+      background-color: darkslategrey;
     }
     h1{
         display:flex;
         align-self: flex-start;
         color: rgb(86, 83, 253);
-        font-size: 30px;
+        font-size: 35px;
         font-weight: bold;
         align-self: flex-start;
     }
     a{
-        text-decoration: none;
+        text-decoration: solid coral;
         color: blanchedalmond;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
     }
     ul{
         list-style: none;
         display:flex;
         justify-content: space-between;
-        gap: 20px;
+        gap: 10px;
         color: blanchedalmondSSS;
+        
     }
 
 
@@ -72,6 +76,7 @@
     <p><h1>Expense Tracker</h1></p>
     <ul>
         <li><a href="#">Home</a></li>
+        <li><a href="#">Transaction History</a></li>
         <li><a href="#">About us</a></li>
         
         
