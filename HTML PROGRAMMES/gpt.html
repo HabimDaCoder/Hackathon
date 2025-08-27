@@ -1,0 +1,181 @@
+<html lang="en">
+   <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML‑only Interactive Site</title>
+  <meta name="description" content="A beautiful, responsive, and interactive website built with a single HTML file — no JavaScript.">
+  <style>
+    /* --------- Design Tokens --------- */
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --panel: #111827;       /* gray-900 */
+      --card: #0b1220;        /* deep slate */
+      --text: #e5e7eb;        /* gray-200 */
+      --muted: #94a3b8;       /* slate-400 */
+      --brand: #22c55e;       /* green-500 */
+      --brand-2: #38bdf8;     /* sky-400 */
+      --accent: #a78bfa;      /* violet-400 */
+      --ring: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --glass: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    /* light theme variables (activated via checkbox) */
+    #theme-toggle:checked ~ .site { 
+      --bg: #f7fafc;          /* light */
+      --panel: #ffffff;
+      --card: #f8fafc;
+      --text: #0b1220;
+      --muted: #475569;
+      --brand: #0ea5e9;       /* sky-500 */
+      --brand-2: #16a34a;     /* green-600 */
+      --accent: #7c3aed;      /* violet-600 */
+      --ring: #0ea5e9;
+      --shadow: 0 10px 30px rgba(2,6,23,.12);
+    }
+
+    /* --------- Base --------- */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+    .btn { display: inline-block; padding: 12px 18px; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--accent)); color: white; font-weight: 700; box-shadow: var(--shadow); border: 0; }
+    .btn.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--text) 18%, transparent); color: var(--text); }
+    .card { background: var(--glass); border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); backdrop-filter: blur(10px); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .section { padding: clamp(56px, 8vw, 96px) 0; }
+    .kicker { letter-spacing: .2em; text-transform: uppercase; color: var(--brand-2); font-weight: 800; font-size: .85rem; }
+    h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin: 10px 0 16px; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 8px; }
+    p.lead { font-size: clamp(1.05rem, 2.1vw, 1.25rem); color: var(--muted); }
+
+    /* --------- Header / Nav --------- */
+    header { position: sticky; top: 0; z-index: 50; background: color-mix(in oklab, var(--bg) 86%, black 0%); border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent); backdrop-filter: blur(10px); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .brand { display: inline-flex; gap: 10px; align-items: center; font-weight: 900; letter-spacing: .5px; }
+    .brand .logo { width: 36px; aspect-ratio: 1; background: radial-gradient(60% 60% at 30% 30%, var(--brand), transparent), radial-gradient(60% 60% at 70% 70%, var(--accent), transparent); border-radius: 10px; filter: saturate(1.2); }
+    nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; }
+    nav a { opacity: .85; padding: 8px 12px; border-radius: 999px; }
+    nav a:hover, nav a:focus { background: color-mix(in oklab, var(--text) 8%, transparent); opacity: 1; }
+
+    /* Theme Toggle Switch */
+    #theme-toggle { position: absolute; opacity: 0; pointer-events: none; }
+    .theme-switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; padding: 6px 10px; border-radius: 999px; background: color-mix(in oklab, var(--text) 8%, transparent); }
+    .switch { position: relative; width: 42px; height: 24px; background: color-mix(in oklab, var(--text) 35%, transparent); border-radius: 999px; }
+    .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: transform .25s ease; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+    #theme-toggle:checked ~ .site .switch::after { transform: translateX(18px); }
+
+    /* --------- Hero --------- */
+    .hero { position: relative; overflow: clip; }
+    .halo { position: absolute; inset: -25% -5% auto; height: 60vh; background: radial-gradient(40% 50% at 50% 30%, color-mix(in oklab, var(--brand) 80%, transparent), transparent 70%), radial-gradient(50% 60% at 60% 40%, color-mix(in oklab, var(--accent) 70%, transparent), transparent 72%); filter: blur(60px) saturate(1.4) brightness(1.1); opacity: .35; pointer-events: none; }
+    .hero-grid { display: grid; gap: 28px; align-items: center; grid-template-columns: 1.1fr .9fr; }
+    .hero-visual { aspect-ratio: 4/3; border-radius: var(--radius); background:
+      radial-gradient(60% 60% at 30% 30%, color-mix(in oklab, var(--brand) 50%, transparent), transparent 70%),
+      radial-gradient(60% 60% at 80% 60%, color-mix(in oklab, var(--accent) 50%, transparent), transparent 72%),
+      linear-gradient(135deg, color-mix(in oklab, var(--panel) 96%, transparent), color-mix(in oklab, var(--card) 96%, transparent));
+      display: grid; place-items: center; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .hero-visual::after { content:""; position: absolute; inset: -20% 10% auto; height: 200px; background: linear-gradient(90deg, color-mix(in oklab, var(--brand) 50%, transparent), color-mix(in oklab, var(--accent) 50%, transparent)); filter: blur(40px); opacity: .5; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .pill { padding: 8px 12px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--text) 12%, transparent); background: var(--glass); font-weight: 600; }
+
+    /* --------- Features --------- */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature { padding: 18px; }
+    .feature h3 { margin: 6px 0 8px; font-size: 1.1rem; }
+    .icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display: grid; place-items: center; font-weight: 900; box-shadow: var(--shadow); }
+
+    /* --------- Tabs (CSS-only using :target) --------- */
+    .tabs { display: grid; grid-template-columns: 200px 1fr; gap: 18px; }
+    .tabs a { display: block; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; background: color-mix(in oklab, var(--text) 8%, transparent); }
+    .tab-panel { display: none; padding: 18px; }
+    .tab-panel:target { display: block; }
+    /* default visible */
+    #tab-1:target ~ #panel-1,
+    #tab-2:target ~ #panel-2,
+    #tab-3:target ~ #panel-3 { display: block; }
+    .tabs .card { min-height: 200px; }
+
+    /* --------- Gallery --------- */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .gallery figure { overflow: hidden; border-radius: 14px; margin: 0; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
+    .gallery img { transform: scale(1); transition: transform .35s ease; }
+    .gallery figure:hover img { transform: scale(1.06); }
+    .gallery figcaption { padding: 10px; font-size: .9rem; color: var(--muted); background: color-mix(in oklab, var(--panel) 86%, transparent); }
+
+    /* --------- FAQ (details/summary) --------- */
+    details { border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; background: var(--glass); }
+    details[open] { background: color-mix(in oklab, var(--text) 6%, transparent); }
+    summary { cursor: pointer; font-weight: 700; }
+
+    /* --------- Modal (CSS-only using :target) --------- */
+    .modal { position: fixed; inset: 0; background: color-mix(in oklab, var(--bg) 40%, black 40%); display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .modal:target { opacity: 1; pointer-events: auto; }
+    .modal .dialog { width: min(560px, 92%); padding: 20px; background: var(--panel); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
+    .modal .close { float: right; padding: 8px 12px; border-radius: 999px; background: color-mix(in oklab, var(--text) 8%, transparent); }
+
+    /* --------- Contact Form --------- */
+    form { display: grid; gap: 12px; }
+    input, textarea, select { width: 100%; padding: 12px 14px; background: color-mix(in oklab, var(--panel) 96%, transparent); color: var(--text); border: 1px solid color-mix(in oklab, var(--text) 14%, transparent); border-radius: 12px; outline: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent); }
+    .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+    /* --------- Footer --------- */
+    footer { padding: 36px 0; color: var(--muted); border-top: 1px solid color-mix(in oklab, var(--text) 8%, transparent); }
+
+    /* --------- Utilities --------- */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .center { text-align: center; }
+    .mt-2 { margin-top: 12px; }
+
+    /* --------- Responsive --------- */
+    @media (max-width: 900px) {
+      .hero-grid, .tabs { grid-template-columns: 1fr; }
+      .features, .gallery, .grid-3, .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme toggle lives before .site so the sibling selector can flip vars -->
+  <input type="checkbox" id="theme-toggle" aria-label="Toggle light theme" />
+
+  <div class="site">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Nova<span style="color:var(--brand);">Site</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tabs">Tabs</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+              <label class="theme-switch" for="theme-toggle">
+                <span class="switch" aria-hidden="true"></span>
+                <span>Theme</span>
+              </label>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="section hero" id="top">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div>
+            <span class="kicker">HTML only • Zero JS</span>
+            <h1>Build a stunning, interactive site with just one HTML file.</h1>
+            <p class="lead">This template packs tabs, accordions, a modal, dark/light themes, a responsive gallery, and a validated contact form — powered purely by HTML & CSS.</p>
+            <div class="hero-badges">
+              <span class="pill">Responsive</span>
+              <span class="pill">Accessible</span>
+              <span class="pill">No dependen
+              </html>

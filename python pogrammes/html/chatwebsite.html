@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BrightStart — Minimal Website</title>
+  <meta name="description" content="A clean, responsive one‑page site built with only HTML & CSS." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== CSS RESET ========== */
+    *,*::before,*::after{box-sizing:border-box}
+    *{margin:0}
+    html:focus-within{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{line-height:1.6;-webkit-font-smoothing:antialiased}
+    img,picture,video,canvas,svg{display:block;max-width:100%}
+    input,button,textarea,select{font:inherit}
+
+    /* ========== THEME ========== */
+    :root{
+      --bg: #0b0f14;
+      --surface:#0f1520;
+      --text:#e6ecf2;
+      --muted:#a7b2bf;
+      --brand:#6ee7b7;   /* mint */
+      --brand-ink:#073b2d;
+      --ring: #93c5fd;
+      --card:#121a26;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --gap: clamp(12px, 2vw, 20px);
+      --maxw: 1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7fafc; --surface:#ffffff; --text:#0d1b2a; --muted:#485564; --card:#ffffff; --shadow:0 10px 25px rgba(2,8,23,.08); --brand:#0ea5e9; --brand-ink:#04283a; }
+    }
+
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%, rgba(110,231,183,.15), transparent 60%),
+      radial-gradient(1200px 600px at 110% 10%, rgba(14,165,233,.18), transparent 60%), var(--bg); color:var(--text)}
+
+    /* Layout helpers */
+    .container{width:min(100% - 32px, var(--maxw)); margin-inline:auto}
+    .grid{display:grid; gap:var(--gap)}
+
+    /* ========== NAVBAR ========== */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); background:linear-gradient(to bottom, rgba(2,6,23,.6), rgba(2,6,23,0));}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+    .logo{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, var(--brand), #60a5fa); box-shadow: var(--shadow);} 
+    nav a{color:var(--muted); text-decoration:none; padding:.5rem .75rem; border-radius:12px}
+    nav a:hover{color:var(--text); background:rgba(255,255,255,.06)}
+    .menu{display:flex; gap:6px}
+
+    /* Mobile nav */
+    #navcheck{display:none}
+    .hamburger{display:none; cursor:pointer; padding:.5rem; border-radius:12px}
+    .hamburger:hover{background:rgba(255,255,255,.08)}
+    @media (max-width: 800px){
+      .menu{display:none}
+      .hamburger{display:block}
+      #navcheck:checked ~ .menu{display:flex; position:absolute; inset:56px 16px auto 16px; flex-direction:column; background:var(--surface); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:10px}
+    }
+
+    /* ========== HERO ========== */
+    .hero{padding: clamp(48px, 10vw, 120px) 0}
+    .hero .container{display:grid; gap:var(--gap); grid-template-columns: 1.1fr .9fr; align-items:center}
+    .title{font-size:clamp(32px, 6vw, 54px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+    .subtitle{color:var(--muted); font-size:clamp(16px, 2.2vw, 18px)}
+    .cta{display:flex; gap:10px; margin-top:18px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:14px; border:1px solid transparent; text-decoration:none; font-weight:600; box-shadow: var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), #60a5fa); color:#052017;}
+    .btn.primary:focus{outline:3px solid var(--ring)}
+    .btn.ghost{background:transparent; color:var(--text); border-color:rgba(255,255,255,.12)}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:22px; box-shadow: var(--shadow)}
+
+    .stats{display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--gap); margin-top:22px}
+    .stat{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px; text-align:center}
+    .stat h3{font-size:clamp(22px, 4vw, 28px)}
+    .stat p{color:var(--muted); font-size:14px}
+    @media (max-width:900px){ .hero .container{grid-template-columns:1fr} }
+
+    /* ========== SECTIONS ========== */
+    section{padding: clamp(44px, 8vw, 86px) 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; margin-bottom:20px}
+    .section-head h2{font-size:clamp(24px, 4.4vw, 36px)}
+    .section-head p{color:var(--muted)}
+
+    /* Features */
+    .features{grid-template-columns:repeat(3, 1fr)}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:18px}
+    .card h3{font-size:18px; margin-bottom:6px}
+    .card p{color:var(--muted); font-size:15px}
+    @media (max-width: 900px){ .features{grid-template-columns:1fr} }
+
+    /* Gallery */
+    .gallery{grid-template-columns:repeat(12,1fr)}
+    .gallery img{width:100%; height:100%; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,.06)}
+    .g1{grid-column:span 7}
+    .g2{grid-column:span 5}
+    .g3{grid-column:span 4}
+    .g4{grid-column:span 4}
+    .g5{grid-column:span 4}
+    @media (max-width: 900px){ .g1,.g2,.g3,.g4,.g5{grid-column:span 12} }
+
+    /* About */
+    .about{display:grid; gap:var(--gap); grid-template-columns:1fr 1fr}
+    .about .blurb{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px}
+    .about ul{margin-top:8px; padding-left:18px}
+    .about li{margin:8px 0; color:var(--muted)}
+    @media (max-width: 900px){ .about{grid-template-columns:1fr} }
+
+    /* Contact */
+    form{display:grid; gap:12px}
+    input, textarea{background:var(--surface); color:var(--text); border:1px solid rgba(255,255,255,.12); padding:12px 14px; border-radius:12px}
+    input:focus, textarea:focus{outline:3px solid var(--ring); border-color:transparent}
+    textarea{min-height:120px; resize:vertical}
+
+    /* Footer */
+    footer{padding:32px 0; border-top:1px dashed rgba(255,255,255,.1); color:var(--muted)}
+    .foot{display:flex; gap:10px; justify-content:space-between; align-items:center}
+    .social{display:flex; gap:10px}
+    .chip{border:1px solid rgba(255,255,255,.12); padding:6px 10px; border-radius:999px}
+
+    /* Tiny flourish */
+    .ping{display:inline-block; width:10px; height:10px; border-radius:999px; background:var(--brand); box-shadow:0 0 0 0 rgba(110,231,183,.7); animation:ping 1.8s infinite}
+    @keyframes ping{ 70%{box-shadow:0 0 0 10px rgba(110,231,183,0)} 100%{box-shadow:0 0 0 0 rgba(110,231,183,0)} }
+  </style>
+</head>
+<body>
+  <!-- ======= NAV ======= -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>BrightStart</span>
+      </div>
+
+      <label for="navcheck" class="hamburger" aria-label="Open navigation" title="Menu">☰</label>
+      <input id="navcheck" type="checkbox" aria-hidden="true" />
+
+      <nav class="menu" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <h1 class="title">Launch a clean, responsive website with just <span class="ping" title="alive"></span> HTML & CSS</h1>
+          <p class="subtitle" style="margin-top:10px">This starter is lightweight, accessible, and easy to customize. No frameworks. No build steps. Just pop it on any static host and you’re live.</p>
+          <div class="cta">
+            <a class="btn primary" href="#features">Get Started</a>
+            <a class="btn ghost" href="#about">Learn More</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><h3>100%</h3><p>Responsive</p></div>
+            <div class="stat"><h3>0 JS</h3><p>Just HTML & CSS</p></div>
+            <div class="stat"><h3>~12KB</h3><p>Styles inline</p></div>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3 style="margin-bottom:8px">What’s inside</h3>
+          <ul style="color:var(--muted); line-height:1.9; padding-left:18px">
+            <li>Sticky, blurred header with mobile menu</li>
+            <li>Hero, Features, Gallery, About & Contact</li>
+            <li>Cards, grid, and fluid typography</li>
+            <li>Dark ↔︎ Light via system preference</li>
+            <li>Accessible focus styles and semantics</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FEATURES ======= -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Polished features, no bloat</h2>
+        <p>Everything you need to start—nothing you don’t.</p>
+      </div>
+      <div class="grid features">
+        <article class="card">
+          <h3>Modern Layouts</h3>
+          <p>Grid-based sections and responsive spacing that scale across phones, tablets, and desktops without any breakage.</p>
+        </article>
+        <article class="card">
+          <h3>Accessible by Default</h3>
+          <p>Semantic HTML, keyboard‑navigable menus, and visible focus rings help everyone use your site comfortably.</p>
+        </article>
+        <article class="card">
+          <h3>Easy Theming</h3>
+          <p>Change colors in <code>:root</code>, swap the accent, or set your own radius once—updates cascade everywhere.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= GALLERY ======= -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <h2>Visual gallery</h2>
+        <p>Drop in your product shots or project images.</p>
+      </div>
+      <div class="grid gallery">
+        <img class="g1" src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop" alt="Abstract gradient lights" />
+        <img class="g2" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop" alt="Laptop on desk" />
+        <img class="g3" src="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?q=80&w=1600&auto=format&fit=crop" alt="Code on screen" />
+        <img class="g4" src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?q=80&w=1600&auto=format&fit=crop" alt="Plant and notebook" />
+ 
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= ABOUT ======= -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About this template</h2>
+        <p>Built for students, makers, and small teams.</p>
+      </div>
+      <div class="about">
+        <div class="blurb">
+          <h3 style="margin-bottom:8px">Why use it?</h3>
+          <p class="subtitle" style="margin-top:6px">You asked for a simple HTML+CSS website. This gives you a professional baseline that’s easy to adapt for a portfolio, startup, or school project.</p>
+          <ul>
+            <li>Single file, easy to host anywhere</li>
+            <li>Copy‑paste sections as needed</li>
+            <li>Looks great on phones and desktops</li>
+          </ul>
+        </div>
+        <div class="blurb">
+          <h3 style="margin-bottom:8px">Quick customization tips</h3>
+          <ul>
+            <li>Change the site name in the header ("BrightStart")</li>
+            <li>Replace gallery images with your own</li>
+            <li>Edit theme colors in <code>:root</code></li>
+            <li>Update text in each section—keep it concise</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CONTACT ======= -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Have questions? Send a message.</p>
+      </div>
+      <div class="grid" style="grid-template-columns: 1.2fr .8fr">
+        <form name="contact" method="post" onsubmit="return false" aria-label="Contact form">
+          <label>
+            <span style="display:block; margin-bottom:6px">Your name</span>
+            <input type="text" name="name" placeholder="Ada Lovelace" required>
+          </label>
+          <label>
+            <span style="display:block; margin-bottom:6px">Email</span>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            <span style="display:block; margin-bottom:6px">Message</span>
+            <textarea name="message" placeholder="Write your message…" required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send Message</button>
+        </form>
+        <aside class="card">
+          <h3>Find us</h3>
+          <p class="subtitle" style="margin:8px 0 12px">Kathmandu • Remote‑friendly</p>
+          <div class="grid" style="grid-template-columns:1fr 1fr">
+            <div class="chip">hello@example.com</div>
+            <div class="chip">+977 98X‑XXX‑XXXX</div>
+          </div>
+          <p style="margin-top:12px; color:var(--muted)">We’ll get back to you within 1–2 business days.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> BrightStart. All rights reserved.</small>
+      <div class="social">
+        <a class="chip" href="#" aria-label="Twitter">Twitter</a>
+        <a class="chip" href="#" aria-label="GitHub">GitHub</a>
+        <a class="chip" href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Only two lines of JS to set the year; remove if you want 0 JS. -->
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
