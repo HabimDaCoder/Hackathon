@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  
+  <header>
+    <nav class="navbar">
+      <section class="hero">
+        <p><b> <img src="Null-Cents logo 0.jpeg" alt="Expense Tracker Logo" class="logo">Null-Cents</b></p>
+        
+        <ul>
+          <li><a href="Null terminators.html">Home</a></li>
+          <li><a href="#history_transaction" class="nav-link smoothScroll">Transaction History</a></li>
+          <li><a href="front.html">About us</a></li>
+        </ul>
+      </section>
+    </nav>
+  </header>
+
+   
+  <div class="content">
+    <h1>Welcome To Null-Cents</h1>
+    <p>Track your expenses easily and efficiently.</p>
+  </div>
+
+   
+ 
+
+ 
+  <div class="card">
+    <h2><i class="fas fa-plus-circle"></i> Add Transaction</h2>
+    <form id="transaction-form">
+      <label for="title">Transaction Title:</label>
+      <input type="text" id="title" placeholder="e.g. Grocery, School" required />
+
+      <label for="amount">($) Amount:</label>
+      <input type="number" id="amount" placeholder="10" required />
+
+      <h3>Transaction Type:</h3>
+      <div class="radio-group">
+        <input type="radio" id="income" name="transaction_type" value="income" required>
+        <label for="income">Income <i class="fas fa-long-arrow-alt-up"></i></label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="expense" name="transaction_type" value="expense">
+        <label for="expense">Expense <i class="fas fa-long-arrow-alt-down"></i></label>
+      </div><br>
+
+      <label for="category">Category:</label>
+      <select id="category" required>
+        <option value="">Select a category</option>
+        <option value="salary">Salary</option>
+        <option value="freelance">Freelance</option>
+        <option value="investment">Investment</option>
+        <option value="food">Food & Dining</option>
+        <option value="shopping">Shopping</option>
+        <option value="transport">Transportation</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="utilities">Utilities</option>
+        <option value="health">Health & Fitness</option>
+        <option value="other">Other</option>
+      </select><br>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" required />
+
+      <button type="submit" class="btn">
+        <i class="fas fa-plus-circle"></i> Add Transaction
+      </button>
+    </form>
+  </div>
+
+  
+  <div class="card" id="history_transaction">
+    <h2>Transactions</h2>
+    <div id="transactions-list"></div>
+  </div>
+   <div class="card summary">
+
+    <h2>Summary</h2>
+    <p><strong>Balance:</strong> <span id="balance">$0</span></p>
+    <p><strong>Income:</strong> <span id="income">$0</span></p>
+    <p><strong>Expenses:</strong> <span id="expense">$0</span></p>
+    <canvas id="chart" width="200" height="200"></canvas>
+  </div>
+   
+  <div class="actions">
+    <button class="btn-redo" id="reset-btn">
+      <i class="fas fa-redo"></i> Reset Data
+    </button>
+  </div>
+
+  
+  <footer>
+    <p>&copy; 2025 | Created by Null Terminators | Expense Tracker Project | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

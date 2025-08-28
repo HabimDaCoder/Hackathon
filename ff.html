@@ -1,97 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <title>Landing Page</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-container {
+            background: #fffbe7;
+            padding: 40px 32px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(30, 64, 175, 0.15);
+            max-width: 700px;
+            width: 90vw;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 18px auto;
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.10);
+        }
+        h1, h2, h3 {
+            color: #185a9d;
+            text-align: center;
+            margin-top: 0;
+        }
+        h2 {
+            color: #27ae60;
+            margin-bottom: 16px;
+        }
+        h3 {
+            color: #43cea2;
+            margin-bottom: 12px;
+        }
+        p, ul, li {
+            color: #34495e;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+        ul {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+        b {
+            color: #1bcf8d;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+            margin: 28px 0;
+            border-radius: 2px;
+        }
+        code {
+            background: #eaf2f8;
+            color: #185a9d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .features-list {
+            margin-bottom: 18px;
+        }
+        .thankyou {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #27ae60;
+            margin-top: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 600px) {
+            .about-container {
+                padding: 18px 8px;
+            }
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-        background-color: cadetblue;
-        min-height: 100vh;
-
-        color: var(--dark);
-        display: flex;
-
-
-    }
-
-    
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding: 20px;
-        background: var(--card-bg);
-        border-radius: 1px;
-        box-shadow: var(--shadow);
-        background-color: rgb(61, 115, 139);
-        max-height: 100%;
-        box-shadow: 100px;
-    }
-
-    h1 {
-        display: flex;
-        align-self: flex-start;
-        color: rgb(18, 14, 250);
-        font-size: 45px;
-        font-weight: bold;
-
-    }
-nav {
-    display: flex;
-    justify-content: flex-start;
-    align-items: left;
-    gap: 40px;
-    margin-bottom: 25px;
-    padding: 20px;
-    background: var(--card-bg);
-    border-radius: 1px;
-    box-shadow: var(--shadow);
-    background-color: rgb(61, 115, 139);
-    max-height: 100%;
-    box-shadow: 100px;
-}
-
-    a {
-        text-decoration: none;
-        color: blanchedalmond;
-        font-weight: bold;
-        font-size: 15px;
-    }
-
-    ul {
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-    
-    }
-
-</style>
-
 <body>
-    <header>
-<nav>
-    <ul>
-        <li><a href="#"> Home</a></li>
-    </ul>
-    <h1>ExpenseTracker</h1>
-    <ul>
-        <li><a href="#">Contact</a></li>
-        <li><a herf="#">about</a></li>
-    </ul>
-</nav>
-    </header>
+    <div class="about-container">
+        <h1>Null-Cents</h1>
+        <img src="Null-Cents logo 0.jpeg" alt="Expense Tracker Logo" class="logo">
+       
+        <hr>
+        <h3> Features</h3>
+        <ul class="features-list">
+            <li>Stores data in <code>localStorage</code> so expenses remain after refreshing.</li>
+            <li>Validates input to prevent empty names or invalid amounts.</li>
+            <li>Auto updates the total after each expense.</li>
+        </ul>
+
+        <hr>
+        <h3> What Is This?</h3>
+        <p>
+            This is a simple Expense Tracker web application built using:
+            <br>
+            <b>HTML</b> (for the structure),
+            <b>CSS</b> (for basic styling),
+            <b>JavaScript</b> (for functionality),
+            <b>localStorage</b> (for saving data in the browser).
+        </p>
+
+        <hr>
+        <h3> It allows you to:</h3>
+        <ul>
+            <li>Enter an expense name and amount.</li>
+            <li>Add it to a list.</li>
+            <li>View all your expenses.</li>
+            <li>See the total cost.</li>
+            <li>Save all this information permanently in your browser (even if you close or refresh the page).</li>
+        </ul>
+
+        <hr>
+        <h3> Benefits of This Expense Tracker</h3>
+        <ul>
+            <li> <b>Easy to Use:</b> Simple user interface for tracking daily expenses.</li>
+            <li> <b>Data Persistence:</b> Uses localStorage, so your data won't disappear 
+                when you reload or close the tab.</li>
+            <li> <b>Private:</b> Data is stored locally in your browser – not shared online.</li>
+            <li> <b>Fast Setup:</b> Doesn’t require any backend or server. Just open the
+                file in a browser.</li>
+            <li> <b>Customizable:</b> Easily add features like delete, categories, filters,
+                or even export to CSV.</li>
+            <li> <b>Educational:</b> Great small project to learn HTML, JavaScript, and
+                browser storage.</li>
+        </ul>
+
+        <hr>
+        <div style="text-align:center; margin-bottom:24px;">
+            <a href="reg.html" target="_blank" style="text-decoration:none;">
+                <button style="background:#27ae60;color:#fff;padding:10px 22px;border:none;border-radius:8px;cursor:pointer;font-size:1rem;">
+                    Register Now
+                </button>
+            </a>
+        </div>
+
+        <h2>Thanks For visiting Null-Cents!</h2>
+        <div class="thankyou">Happy Expense Tracking!</div>
 </body>
 </html>

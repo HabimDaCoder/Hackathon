@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>expense Tracker</title>
+    
+    <title>About Us</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -47,22 +48,93 @@
             margin-top: 18px;
         }
         li {
-            background: #f1f5f9;
+            background: none;
             margin: 10px 0;
             padding: 12px 18px;
             border-radius: 8px;
             color: #2563eb;
             font-size: 1.08rem;
             font-weight: 500;
-            box-shadow: 0 2px 8px rgba(126, 149, 185, 0.07);
+           
             transition: background0.2s;
         }
         li:hover {
-            background: #dbeafe;
+            background: none;
         }
+        .hero {
+            background-color: darkslategrey;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+         :root {
+--primary: #4361ee; 
+--secondary: #3f37c9; 
+--income: #2ecc71; 
+--expense: #e74c3c; 
+--light: #143353; 
+--dark: #25323f;  
+--card-bg: linear-gradient(135deg, #f5f7fa, #c3cfe2);  
+--shadow: 0 8px 32px rgba(31, 38, 135, 0.1);  
+--transition: all 0.3s ease;  
+}
+nav b{
+    display:flex;
+        align-self: flex-start;
+        color: rgb(83, 163, 209);
+        font-size: 35px;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ nav a{
+        text-decoration: solid rgb(0, 0, 0);
+        color: blanchedalmond;
+        font-weight: bold;
+        font-size: 15px;
+        letter-spacing: 0;
+        transition: color 0.3s ease;
+        text-decoration: none;
+        position: sticky;
+        background-color: darkslategrey;
+    }
+     nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: rgb(0, 0, 0);
+      transition: width 0.3s;
+    }
+    nav a:hover {
+        color: black;
+        
+    }
+     nav a:hover::after {
+      width: 100%;
+    }
+    .hero{
+        display: flex;
+       
+        gap: 0px;
+    }
+  
+  
     </style>
 </head>
 <body>
+     <header>
+    <nav class="navbar">
+      <section class="hero">
+        <p><b>Null-Cents</b></p>
+        <ul>
+          <li><a href="Null terminators (1).html">Home</a></li>
+         
+        </ul>
+      </section>
+    </nav>
+  </header>
   <div class="container">
     <h1>About Us</h1>
     <p>Welcome to Expense Tracker, your personal finance management tool designed to help you take control of your expenses and savings. Our mission is to provide a simple, intuitive platform that empowers you to make informed financial decisions.</p>
