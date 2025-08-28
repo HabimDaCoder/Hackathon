@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+         body {
+      background: linear-gradient(135deg, #92dfdf, #1faabd);
+      min-height: 100vh;
+      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      align-items:center;
+    }
+
+        header{
+            color: rgb(11, 128, 230);
+            width: 100%;
+           
+        }
+
+        nav {
+      width: fit-content;
+      max-width: 1200px;
+      margin: 5px auto;
+      padding: 15px 30px;
+      background: var(--dark);
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items:left;
+      background-color: darkslategrey;
+    }
+    nav:hover{
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+         transform: translateY(-5px);
+       transition: all 0.3s ease-in-out;
+    }
+    nav b{
+        display:flex;
+        align-self: flex-start;
+        color: rgb(83, 163, 209);
+        font-size: 35px;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav a{
+        text-decoration: solid coral;
+        color: blanchedalmond;
+        font-weight: bold;
+        font-size: 15px;
+        letter-spacing: 0;
+        transition: color 0.3s ease;
+        text-decoration: none;
+        position: sticky;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: rgb(0, 0, 0);
+      transition: width 0.3s;
+    }
+    nav a:hover {
+        color: black;
+        
+    }
+     nav a:hover::after {
+      width: 100%;
+    }
+  
+    ul{
+        list-style: none;
+        display:flex;
+        justify-content: space-between;
+        gap: 50px;
+        color: blanchedalmondSSS;
+        
+    }
+    .hero{
+        display: flex;
+        align-items:right;
+        justify-content: right;
+        gap: 250px;
+    }
+    div.content{
+        text-align: left;
+        margin-top: 10px;
+        color: white;
+        background-color:rgb(85, 147, 240);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-align: left;
+        transition: var(--transition);
+        background:linear-gradient(135deg, #8fddfc, #35abc0);
+    }
+div.content:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+div.card{
+    background-color: rgb(178, 198, 236);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    background: linear-gradient(135deg, #9bd8f0, #54c7db);
+}
+div.card:hover{
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: rgb(70, 66, 66) 2px solid;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #85dae9;
+}
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: rgb(70, 66, 66) 2px solid;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #85dae9;
+}
+ .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            
+            color: #000000;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgb(70, 66, 66);
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: #85dae9;
+        }
+</style>
+<body>
+    <header>
+
+        <nav>
+<div class="navbar">
+    <section class="hero">
+
+    <p><b>Null-Cents
+
+    </b>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Transaction History</a></li>
+        <li><a href="#">About us</a></li>
+    </ul>
+</p>
+</div>
+</nav>
+</header>
+<div class="content">
+    <h1>Welcome To Null-Cents</h1>
+    <p>Track your expenses easily and efficiently.</p>
+    </div>
+    <div class="card">
+        <h2><i class="fas fa-plus-circle"></i>Add Transaction</h2>
+        <label>Transaction Title:</label>
+            <input type="text" name="transaction_title" placeholder="For eg. School,Grocery,etc" required />
+            <label>($)Amount:</label>
+            <input type="number" name="amount" placeholder="10$" required/>
+            <div class="card">
+                <h3>Transaction Type:</h3>
+                <input type="radio" id="income" name="transaction_type" value="income">
+                <label for="income">Income</label><br>
+                <input type="radio" id="expense" name="transaction_type" value="expense">
+                <label for="expense">Expense</label><br>
+                </div>
+                <div class="form-group">
+                <label>Category:</label>
+                        
+                        <select name="category" class="form-control" placeholder="Select a option" required>
+                            <option value="">Select a category</option>
+                            <option value="salary">Salary</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="investment">Investment</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="transport">Transportation</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="health">Health & Fitness</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+</div>
+        
+          
+            
+        
+
+        
+        
+    
+
+<p>&copy; 2025| Created by Null Terminators</a> | Expense Tracker Project | All Rights Reserved </p>
+</body>
+</html>

@@ -1,0 +1,93 @@
+
+<html>
+<head>
+    <title>Expense Tracker:Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background: #fffbe7;
+            padding: 32px 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(30, 64, 175, 0.15);
+            width: 350px;
+        }
+        h1 {
+            text-align: center;
+            color: #185a9d;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #185a9d;
+            font-weight: 500;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #43cea2;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .hero{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        gap: 250px;
+        font-size: 17px;
+        background:linear-gradient(135deg, #93b5f5, #318ce0);
+        border-radius: 25px;
+    }
+        
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+        }
+        p {
+            text-align: center;
+            margin-top: 18px;
+            color: #333;
+        }
+        a {
+            color: #f8fbff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #43cea2;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <section class="hero">
+            <h4>
+                <a href="http://127.0.0.1:5500/Hackathon/Null%20terminators.html#">Login</a>
+            </h4>
+        </section>
+        
+    </div>
+    <p>Don't have an account? <a href="http://127.0.0.1:5500/Hackathon/register.html">Register here</a>.</p>
+</form>
+</div>
+</body>
+</html>
+
