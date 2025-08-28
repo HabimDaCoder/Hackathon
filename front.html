@@ -1,86 +1,113 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>login</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>expense Tracker</title>
     <style>
         body {
-            background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            margin: 0;
+            padding: 0;
         }
-        .login-container {
-            background: #fffbe7;
-            padding: 32px 40px;
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: #fff;
+            box-shadow: 0 8px 32px rgba(60, 72, 88, 0.12);
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(30, 64, 175, 0.15);
-            width: 350px;
+            padding: 40px 32px;
         }
         h1 {
+            color: #3b82f6;
             text-align: center;
-            color: #185a9d;
-            margin-bottom: 24px;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #185a9d;
-            font-weight: 500;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
             margin-bottom: 18px;
-            border: 1px solid #43cea2;
-            border-radius: 6px;
-            font-size: 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
-        input[type="submit"] {
-            background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
-            color: #fffbe7;
-            padding: 10px 0;
-            border: none;
-            border-radius: 6px;
-            width: 100%;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background0.2s;
-        }
-        input[type="submit"]:hover {
-            background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+        h2 {
+            color: #6366f1;
+            margin-top: 32px;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         p {
+            color: #374151;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
             text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
             margin-top: 18px;
-            color: #333;
         }
-        a {
-            color: #185a9d;
-            text-decoration: none;
-            font-weight: bold;
+        li {
+            background: #f1f5f9;
+            margin: 10px 0;
+            padding: 12px 18px;
+            border-radius: 8px;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(126, 149, 185, 0.07);
+            transition: background0.2s;
         }
-        a:hover {
-            color: #43cea2;
-            text-decoration: underline;
+        li:hover {
+            background: #dbeafe;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form action="register" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="submit" value="Login">
-        </form>
-        <p>Don't have an account? <a href="login.html">Register here</a>.</p>
-    </div>
-</body>
-</html>
+  <div class="container">
+    <h1>About Us</h1>
+    <p>Welcome to Expense Tracker, your personal finance management tool designed to help you take control of your expenses and savings. Our mission is to provide a simple, intuitive platform that empowers you to make informed financial decisions.</p>
+    <hr>
+    <h2>Key Features</h2>
+    <ul class="features-list">
+        <li><b>Expense Tracking:</b> Easily log and categorize your daily expenses to see where your money goes.</li>
+        <li><b>Budgeting Tools:</b> Set monthly budgets and get alerts when you're nearing your limits.</li>
+        <li><b>Financial Reports:</b> Generate detailed reports and visualizations to analyze your spending habits.</li>
+        <li><b>Multi-Device Sync:</b> Access your data from anywhere with seamless synchronization across devices.</li>
+        <li><b>Secure Data:</b> Your financial information is protected with top-tier security measures.</li>
+    </ul>
+    <hr>
+    <h2>Our Technology Stack</h2>
+    <p>Expense Tracker is built using modern web technologies to ensure a smooth and responsive user experience:</p>
+    <ul>
+        <li><code>Frontend:</code> HTML5, CSS3, </li>
+        <li><code>Backend:</code> JavaScript (React.js)</li>
+    </ul>
+    <hr>
+</body> 
+<h2>Project Team Members</h2>
+<ul>
+    <li>
+        <img src="unnamed.jpg" alt="Sushan Ghimire" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
+        <strong>Sushan Ghimire</strong><br>
+        <h5>As he is the most hardworking person in our team.</h5>
+        Frontend Developer. Focuses on UI/UX design and user experience.
+    </li>
+    <li>
+        <img src="426514829_122160283028029757_4776589706216419932_n.jpg" alt="Balaram Dhakal" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
+        <strong>Balaram Dhakal</strong><br>
+        <h5>As is our funny and crazy Member and cool guy.</h5>
+        Project Manager. Coordinates team tasks and ensures timely delivery.
+    </li>
+    <li>
+        <img src="IMG_0472.jpeg" alt="Hari Bishnu Banjara" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
+        <strong>Hari Bishnu Banjara</strong><br>
+        <h5>As he is the backbone of our team.</h5>
+        Backend Developer. Manages server-side logic and database interactions.
+    </li>
+    <li>
+        <img src="1000015158.jpg" alt="Sunny Shah" style="width:70px; height:70px; border-radius:50%; object-fit:cover;">
+        <strong>Sunny Shah</strong><br>
+        <h5>As a main leading Member and crazy about the IT program.</h5>
+        Project Manager. Coordinates team tasks and ensures timely delivery.
+    </li>
+</ul>
